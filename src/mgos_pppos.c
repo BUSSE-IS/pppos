@@ -700,13 +700,14 @@ static void mgos_pppos_dispatch_once(struct mgos_pppos_data *pd) {
         }
       }
       add_cmd(pd, NULL, 0, "AT+CFUN=1"); /* Full functionality */
+      add_cmd(pd, NULL, 0, "AT+CNMP=38");
+      add_cmd(pd, NULL, 0, "AT+CMNB=3");
+      LOG(LL_INFO, ("Settings to NB-IoT only"));
       add_cmd(pd, mgos_pppos_ati_cb, 0, "ATI");
       add_cmd(pd, mgos_pppos_gsn_cb, 0, "AT+GSN");
       add_cmd(pd, mgos_pppos_cimi_cb, 0, "AT+CIMI");
       add_cmd(pd, mgos_pppos_ccid_cb, 0, "AT+CCID");
       add_cmd(pd, mgos_pppos_cpin_cb, 0, "AT+CPIN?");
-      add_cmd(pd, NULL, 0, "AT+CNMP=38");
-      add_cmd(pd, NULL, 0, "AT+CMNB=3");
       add_cmd(pd, NULL, 0, "AT+%s=0", reg_cmd); /* No unsolicited reports */
       bool ok = false;
       if (pd->cfg->last_oper != NULL && pd->try_cops) {
