@@ -723,7 +723,7 @@ static void mgos_pppos_dispatch_once(struct mgos_pppos_data *pd) {
       }
       if (!ok) {
         /* Auto mode */
-        LOG(LL_INFO, ("Automatic operator selection"));
+        LOG(LL_INFO, ("Automatic operator selection test"));
         add_cmd(pd, NULL, COPS_AUTO_TIMEOUT, "AT+COPS=0");
       }
       add_cmd(pd, mgos_pppos_creg_cb, 0, "AT+%s?", reg_cmd);
